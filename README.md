@@ -4,6 +4,25 @@ With command injection (without plugin.yml)
 
 My Discord: ``Matteow#6953``
 
+## Maven
+```
+<repositories>
+    <repository>
+        <id>bungeecord-repo</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+</repositories>
+
+
+<dependencies>
+    <dependency>
+        <groupId>io.github.360matt</groupId>
+        <artifactId>RunnableOverNetwork</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
+
 ## Features
 ### Shortened methods:
 * check if the sender is a player (and get the Player)
