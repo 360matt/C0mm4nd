@@ -59,14 +59,58 @@ public class XX extends BukkitCmd {
 
     @Override
     public BukkitExec onCommand () {
-
-
+        
         return new BukkitExec() {
             @Override
             public void exec () throws Exception {
-                
-                // Do stuff
 
+                Player player = getPlayer();
+                // stop and throw if is console.
+
+                if (arg(0, "one", "two", "three")) {
+                    // if args[0] equals "one" or equals "two" or equals "three"
+                    // not throwable
+                }
+
+                if (argOrErr(0, "one", "two", "three")) {
+                    // if args[0] equals "one" or equals "two" or equals "three"
+                    // if not equals, stop the command, throw and if not catched: send error message automatically
+                }
+
+                if (argOrErr(0, 10, 20, 30)) {} // same with int
+                if (arg(0, 10, 20, 30)) {}
+
+
+
+                Player playerArg1 = argPlayerNullable(1); // not throwable, but nullable
+                Player playerArg2 = argPlayer(1); // throwable
+                boolean state1 = isArgPlayer(1);
+
+                OfflinePlayer offlinePlayer = argOfflinePlayer(1);
+
+
+                long number1 = getArgLong(2);
+                boolean state2 = isArgBoolean(2);
+
+                int number2 = getArgInt(2);
+                boolean state3 = isArgInt(2);
+
+                double number3 = getArgDouble(2);
+                boolean state4 = isArgDouble(2);
+
+                boolean boolean1 = getArgBoolean(2);
+                boolean state5 = isArgBoolean(2);
+
+
+                execute( BukkitExec instance );
+                // call a splitted executor
+
+                execute( BukkitCmd instance );
+                // call a command executor
+
+                execute(this);
+                // infinite loop ? :)
+                
             }
         };
     }
@@ -91,7 +135,7 @@ public class TestBungeeCommand extends BungeeCmd {
             @Override
             public void exec () throws Exception {
 
-                // Do stuff
+                // similar to Bukkit usage, read it :)
 
             }
         };
