@@ -20,3 +20,67 @@ My Discord: ``Matteow#6953``
 * possibility to split the command into several pieces, in different class
 * throw support
 
+## Register a command:
+Just instantiate it.  
+```java
+new XX(); // is done.
+```
+
+## Bukkit
+```java
+public class XX extends BukkitCmd {
+
+    public TestBukkitCommand () {
+        super("truc");
+        // setPermissionMessage("Not pemrission message");
+        // setPermission("");
+        // setAliases(Arrays.asList("Wooaw"));
+
+    }
+
+    @Override
+    public BukkitExec onCommand () {
+
+
+        return new BukkitExec() {
+            @Override
+            public void exec () throws Exception {
+                
+                // Do stuff
+
+            }
+        };
+    }
+
+    @Override
+    public List<String> tabComplete (final CommandSender sender, final String[] args) {
+        return Arrays.asList("example", "issou");
+    }
+}
+```
+
+## Bungee
+```java
+public class TestBungeeCommand extends BungeeCmd {
+    public TestBungeeCommand () {
+        super("truc");
+    }
+
+    @Override
+    public BungeeExec onCommand () {
+        return new BungeeExec() {
+            @Override
+            public void exec () throws Exception {
+
+                // Do stuff
+
+            }
+        };
+    }
+
+    @Override
+    public List<String> tabComplete (final CommandSender sender, final String[] args) {
+        return Arrays.asList("example", "issou");
+    }
+}
+```
