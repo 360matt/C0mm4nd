@@ -39,6 +39,25 @@ My Discord: ``Matteow#6953``
 * possibility to split the command into several pieces, in different class
 * throw support
 
+## Translation (default: French, fuck English :))  
+All fields are using Linguistic interface  
+
+```java
+Linguistic.MISSING_ARGS = (args) -> "";
+// args[0] = required args count
+
+Linguistic.SENDER_NOT_PLAYER = (args) -> "";
+// no args
+
+Linguistic.BAD_ARG = (args) -> "";
+// args[0] = place of bad argument
+// args[1] = type beetween String | Integer | Long | Boolean | Linguistic.Player
+
+
+// simply ^^
+```
+
+
 ## Register a command:
 Just instantiate it.  
 ```java
