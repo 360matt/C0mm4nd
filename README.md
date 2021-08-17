@@ -44,14 +44,14 @@ All fields are using Linguistic interface
 
 ```java
 Linguistic.MISSING_ARGS = (args) -> "";
-// args[0] = required args count
+// args[0] = required args count (int)
 
 Linguistic.SENDER_NOT_PLAYER = (args) -> "";
 // no args
 
 Linguistic.BAD_ARG = (args) -> "";
-// args[0] = place of bad argument
-// args[1] = type beetween String | Integer | Long | Boolean | Linguistic.Player
+// args[0] = place of bad argument (int)
+// args[1] = type (Class<?>) beetween String | Integer | Long | Boolean | Linguistic.Player
 
 
 // simply ^^
