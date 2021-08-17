@@ -1,7 +1,10 @@
 package fr.i360matt.c0mm4nd;
 
 
-import fr.i360matt.c0mm4nd.BungeeExec;
+import fr.i360matt.c0mm4nd.exceptions.BadArgException;
+import fr.i360matt.c0mm4nd.exceptions.MissingArgException;
+import fr.i360matt.c0mm4nd.exceptions.SenderNotPlayerException;
+import fr.i360matt.c0mm4nd.expressions.Linguistic;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Command;
@@ -22,18 +25,31 @@ public abstract class BungeeCmd extends Command implements Listener, TabExecutor
 
 
     // Overridable method
-    public abstract BungeeExec onCommand ();
+    public abstract void onCommand (final BungeeExec exec) throws Exception;
 
 
 
-    // proxy-method
+    // from Bungee
     @Override
     public final void execute (final CommandSender sender, final String[] args) {
-        BungeeExec v2_cExec = this.onCommand(); // instantiate a new object
-        v2_cExec.performExecution(this, sender, args);
+        final BungeeExec exec = new BungeeExec(this, sender, args); // instantiate a new object
+
+        try {
+            this.onCommand(exec);
+        } catch (final BadArgException e) {
+            exec.reply(Linguistic.BAD_ARG.getValue(e.getArgNeeded(), e.getType()));
+        } catch (final MissingArgException e) {
+            exec.reply(Linguistic.MISSING_ARGS.getValue(e.getArgNeeded()));
+        } catch (final SenderNotPlayerException e) {
+            exec.reply(Linguistic.SENDER_NOT_PLAYER.getValue());
+        } catch (final Exception e) {
+            e.printStackTrace();
+            // other throws
+        }
+
     }
 
-    // proxy-method
+    // from Bungee
     public final Iterable<String> onTabComplete (CommandSender sender, String[] args) {
         return this.tabComplete(sender, args);
     }

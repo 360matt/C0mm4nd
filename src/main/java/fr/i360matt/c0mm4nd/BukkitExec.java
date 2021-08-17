@@ -2,7 +2,6 @@ package fr.i360matt.c0mm4nd;
 
 import fr.i360matt.c0mm4nd.exceptions.BadArgException;
 import fr.i360matt.c0mm4nd.exceptions.MissingArgException;
-import fr.i360matt.c0mm4nd.exceptions.SenderNotPlayerException;
 import fr.i360matt.c0mm4nd.expressions.Linguistic;
 
 import org.bukkit.Bukkit;
@@ -14,35 +13,17 @@ import org.bukkit.entity.Player;
 
 import java.rmi.server.ServerNotActiveException;
 
-public abstract class BukkitExec {
+public class BukkitExec {
 
-    private Command command;
-    private CommandSender sender;
-    private String[] args;
+    private final Command command;
+    private final CommandSender sender;
+    private final String[] args;
 
-    protected void performExecution (final Command command, final CommandSender sender, final String[] args) {
+    protected BukkitExec (final Command command, final CommandSender sender, final String[] args) {
         this.command = command;
         this.sender = sender;
         this.args = args;
-
-        try {
-            this.exec();
-        } catch (final BadArgException e) {
-            reply(Linguistic.BAD_ARG.getValue(e.getArgNeeded(), e.getType()));
-        } catch (final MissingArgException e) {
-            reply(Linguistic.MISSING_ARGS.getValue(e.getArgNeeded()));
-        } catch (final SenderNotPlayerException e) {
-            reply(Linguistic.SENDER_NOT_PLAYER.getValue());
-        } catch (final Exception e) {
-            e.printStackTrace();
-            // other throws
-        }
-
-
-
     }
-
-    public abstract void exec() throws Exception;
 
 
     /* ___________________________________________________________________ */
@@ -65,14 +46,6 @@ public abstract class BukkitExec {
     }
     public void broadcast (final String message) {
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
-    }
-
-    public void execute (final BukkitCmd cmdInstance) {
-        cmdInstance.onCommand().performExecution(this.command, this.sender, this.args);
-    }
-
-    public void execute (final BukkitExec execInstance) {
-        execInstance.performExecution(this.command, this.sender, this.args);
     }
 
 

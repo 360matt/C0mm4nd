@@ -1,6 +1,10 @@
 package fr.i360matt.c0mm4nd;
 
 
+import fr.i360matt.c0mm4nd.exceptions.BadArgException;
+import fr.i360matt.c0mm4nd.exceptions.MissingArgException;
+import fr.i360matt.c0mm4nd.exceptions.SenderNotPlayerException;
+import fr.i360matt.c0mm4nd.expressions.Linguistic;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.*;
@@ -34,7 +38,7 @@ public abstract class BukkitCmd extends Command {
 
 
     // Overridable method
-    public abstract BukkitExec onCommand ();
+    public abstract void onCommand (final BukkitExec exec) throws Exception;
 
 
     // Overridable method
@@ -43,22 +47,35 @@ public abstract class BukkitCmd extends Command {
     }
 
 
-    // proxy-method
+    // from Bukkit
     @Override
     public final boolean execute (@NotNull final CommandSender sender, @NotNull final String label, @NotNull final String[] args) {
-        BukkitExec v2_cExec = this.onCommand(); // instantiate a new object
-        v2_cExec.performExecution(this, sender, args);
+        final BukkitExec exex = new BukkitExec(this, sender, args);
+
+        try {
+            this.onCommand(exex);
+        } catch (final BadArgException e) {
+            exex.reply(Linguistic.BAD_ARG.getValue(e.getArgNeeded(), e.getType()));
+        } catch (final MissingArgException e) {
+            exex.reply(Linguistic.MISSING_ARGS.getValue(e.getArgNeeded()));
+        } catch (final SenderNotPlayerException e) {
+            exex.reply(Linguistic.SENDER_NOT_PLAYER.getValue());
+        } catch (final Exception e) {
+            e.printStackTrace();
+            // other throws
+        }
+
         return true;
     }
 
-    // proxy-method
+    // from Bukkit
     @NotNull
     @Override
     public final List<String> tabComplete (@NotNull final CommandSender sender, @NotNull final String alias, @NotNull final String[] args) throws IllegalArgumentException {
         return this.tabComplete(sender, args);
     }
 
-    // proxy-method
+    // from Bukkit
     @NotNull
     @Override
     public final List<String> tabComplete (@NotNull final CommandSender sender, @NotNull final String alias, @NotNull final String[] args, @Nullable final Location location) throws IllegalArgumentException {

@@ -2,7 +2,7 @@ package fr.i360matt.c0mm4nd.expressions;
 
 public interface Linguistic {
 
-    class Player {}
+    class Player {} // instead of Player/Bungee class, for compatibility
 
 
     Linguistic MISSING_ARGS = (args) -> "§cErreur: §e" + args[0] + " §cargument(s) minimum attendu(s)";
