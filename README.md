@@ -17,7 +17,7 @@ My Discord: ``Matteow#6953``
 <dependencies>
     <dependency>
         <groupId>io.github.360matt</groupId>
-        <artifactId>RunnableOverNetwork</artifactId>
+        <artifactId>C0mm4nd</artifactId>
         <version>1.0-SNAPSHOT</version>
     </dependency>
 </dependencies>
