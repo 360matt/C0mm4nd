@@ -40,7 +40,7 @@ My Discord: ``Matteow#6953``
 * throw support
 
 ## Translation (default: French, fuck English :))  
-All fields are using Linguistic interface  
+All fields are using Linguistic.Lambda interface  
 
 ```java
 Linguistic.MISSING_ARGS = (args) -> "";

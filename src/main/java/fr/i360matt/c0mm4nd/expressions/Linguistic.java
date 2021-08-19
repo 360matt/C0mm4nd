@@ -1,15 +1,19 @@
 package fr.i360matt.c0mm4nd.expressions;
 
-public interface Linguistic {
+public class Linguistic {
 
-    class Player {} // instead of Player/Bungee class, for compatibility
+    public interface Lambda {
+        String getValue (Object... args);
+    }
+
+    public static class Player {} // instead of Player/Bungee class, for compatibility
 
 
-    Linguistic MISSING_ARGS = (args) -> "§cErreur: §e" + args[0] + " §cargument(s) minimum attendu(s)";
+    public static Lambda MISSING_ARGS = (args) -> "§cErreur: §e" + args[0] + " §cargument(s) minimum attendu(s)";
 
-    Linguistic SENDER_NOT_PLAYER = (args) -> "§cErreur: seul les joueurs peuvent executer cette commande";
+    public static Lambda SENDER_NOT_PLAYER = (args) -> "§cErreur: seul les joueurs peuvent executer cette commande";
 
-    Linguistic BAD_ARG = (args) -> {
+    public static Lambda BAD_ARG = (args) -> {
         final Class<?> classType = (Class<?>) args[1];
 
         String res = "§cErreur: Le §e" + args[0] + "° §cargument";
@@ -27,6 +31,6 @@ public interface Linguistic {
         return res;
     };
 
-    String getValue (Object... args);
+
 
 }
