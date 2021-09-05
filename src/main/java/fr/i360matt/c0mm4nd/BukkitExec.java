@@ -2,6 +2,7 @@ package fr.i360matt.c0mm4nd;
 
 import fr.i360matt.c0mm4nd.exceptions.BadArgException;
 import fr.i360matt.c0mm4nd.exceptions.MissingArgException;
+import fr.i360matt.c0mm4nd.exceptions.SenderNotPlayerException;
 import fr.i360matt.c0mm4nd.expressions.Linguistic;
 
 import org.bukkit.Bukkit;
@@ -10,8 +11,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.rmi.server.ServerNotActiveException;
 
 public class BukkitExec {
 
@@ -53,11 +52,11 @@ public class BukkitExec {
         return this.sender instanceof Player;
     }
 
-    public Player getPlayer () throws ServerNotActiveException {
+    public Player getPlayer () throws SenderNotPlayerException {
         if (this.sender instanceof Player) {
             return (Player) this.sender;
         }
-        throw new ServerNotActiveException();
+        throw new SenderNotPlayerException();
     }
 
 

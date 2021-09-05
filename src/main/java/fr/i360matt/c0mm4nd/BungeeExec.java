@@ -3,6 +3,7 @@ package fr.i360matt.c0mm4nd;
 
 import fr.i360matt.c0mm4nd.exceptions.BadArgException;
 import fr.i360matt.c0mm4nd.exceptions.MissingArgException;
+import fr.i360matt.c0mm4nd.exceptions.SenderNotPlayerException;
 import fr.i360matt.c0mm4nd.expressions.Linguistic;
 
 import net.md_5.bungee.api.ChatColor;
@@ -10,9 +11,6 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-
-
-import java.rmi.server.ServerNotActiveException;
 
 public class BungeeExec {
 
@@ -54,11 +52,11 @@ public class BungeeExec {
         return this.sender instanceof ProxiedPlayer;
     }
 
-    public ProxiedPlayer getPlayer () throws ServerNotActiveException {
+    public ProxiedPlayer getPlayer () throws SenderNotPlayerException {
         if (this.sender instanceof ProxiedPlayer) {
             return (ProxiedPlayer) this.sender;
         }
-        throw new ServerNotActiveException();
+        throw new SenderNotPlayerException();
     }
 
 
