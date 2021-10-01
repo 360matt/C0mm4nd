@@ -82,12 +82,12 @@ public class XX extends BukkitCmd {
           Player player = getPlayer();
           // stop and throw if is console.
 
-          if (arg(0, "one", "two", "three")) {
+          if (isArg(0, "one", "two", "three")) {
               // if args[0] equals "one" or equals "two" or equals "three"
               // not throwable
           }
 
-          if (argOrErr(0, "one", "two", "three")) {
+          if (isArgOrErr(0, "one", "two", "three")) {
               // if args[0] equals "one" or equals "two" or equals "three"
               // if not equals, stop the command, throw and if not catched: send error message automatically
           }
@@ -97,11 +97,11 @@ public class XX extends BukkitCmd {
 
 
 
-          Player playerArg1 = argPlayerNullable(1); // not throwable, but nullable
-          Player playerArg2 = argPlayer(1); // throwable
+          Player playerArg1 = getArgPlayerNullable(1); // not throwable, but nullable
+          Player playerArg2 = getArgPlayer(1); // throwable
           boolean state1 = isArgPlayer(1);
 
-          OfflinePlayer offlinePlayer = argOfflinePlayer(1);
+          OfflinePlayer offlinePlayer = getArgOfflinePlayer(1);
 
 
           long number1 = getArgLong(2);
