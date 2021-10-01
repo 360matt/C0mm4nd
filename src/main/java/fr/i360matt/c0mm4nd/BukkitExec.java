@@ -7,9 +7,11 @@ import fr.i360matt.c0mm4nd.expressions.Linguistic;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 public class BukkitExec {
@@ -59,8 +61,28 @@ public class BukkitExec {
         throw new SenderNotPlayerException();
     }
 
+    public void teleport (final Location location) throws SenderNotPlayerException {
+        if (this.sender instanceof Player) {
+            Player player = (Player) this.sender;
+            player.teleport(location);
+        }
+        throw new SenderNotPlayerException();
+    }
 
-    public boolean arg (final int ind) {
+    public void teleport (final Entity entity) throws SenderNotPlayerException {
+        teleport(entity.getLocation());
+    }
+
+    public Location getLocation () throws SenderNotPlayerException {
+        if (this.sender instanceof Player) {
+            Player player = (Player) this.sender;
+            return player.getLocation();
+        }
+        throw new SenderNotPlayerException();
+    }
+
+
+    public boolean isArg (final int ind) {
         return this.args.length-1 >= ind;
     }
 
