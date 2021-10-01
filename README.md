@@ -92,8 +92,8 @@ public class XX extends BukkitCmd {
               // if not equals, stop the command, throw and if not catched: send error message automatically
           }
 
-          if (argOrErr(0, 10, 20, 30)) {} // same with int
-          if (arg(0, 10, 20, 30)) {}
+          if (isArgOrErr(0, 10, 20, 30)) {} // same with int
+          if (isArg(0, 10, 20, 30)) {}
 
 
 
