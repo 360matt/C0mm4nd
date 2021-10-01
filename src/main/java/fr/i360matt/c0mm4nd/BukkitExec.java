@@ -86,16 +86,16 @@ public class BukkitExec {
         return this.args.length-1 >= ind;
     }
 
-    public boolean argOrErr (final int ind) throws MissingArgException {
+    public boolean isArgOrErr (final int ind) throws MissingArgException {
         if (this.args.length-1 >= ind)
             return true;
         throw new MissingArgException(ind+1);
     }
 
-    public boolean arg (final int ind, String cond) {
+    public boolean isArg (final int ind, String cond) {
         return this.args.length-1 >= ind && this.args[ind].equals(cond);
     }
-    public boolean argOrErr (final int ind, String cond) throws MissingArgException, BadArgException {
+    public boolean isArgOrErr (final int ind, String cond) throws MissingArgException, BadArgException {
         if (this.args.length-1 >= ind) {
             if (this.args[ind].equals(cond))
                 return true;
@@ -104,7 +104,7 @@ public class BukkitExec {
         throw new MissingArgException(ind+1);
     }
 
-    public boolean arg (final int ind, String... cond) {
+    public boolean isArg (final int ind, String... cond) {
         if (this.args.length-1 >= ind) {
             final String toTest = this.args[ind];
             for (final String candidate : cond)
@@ -113,7 +113,7 @@ public class BukkitExec {
         }
         return false;
     }
-    public boolean argOrErr (final int ind, String... cond) throws BadArgException, MissingArgException {
+    public boolean isArgOrErr (final int ind, String... cond) throws BadArgException, MissingArgException {
         if (this.args.length-1 >= ind) {
             final String toTest = this.args[ind];
             for (final String candidate : cond)
@@ -124,7 +124,7 @@ public class BukkitExec {
         throw new MissingArgException(ind+1);
     }
 
-    public boolean arg (final int ind, int... cond) {
+    public boolean isArg (final int ind, int... cond) {
         if (this.args.length-1 >= ind) {
             try {
                 final int toTest = Integer.parseInt(this.args[ind]);
@@ -136,7 +136,7 @@ public class BukkitExec {
         return false;
     }
 
-    public boolean argOrErr (final int ind, int... cond) throws BadArgException, MissingArgException {
+    public boolean isArgOrErr (final int ind, int... cond) throws BadArgException, MissingArgException {
         if (this.args.length-1 >= ind) {
             try {
                 final int toTest = Integer.parseInt(this.args[ind]);
@@ -155,7 +155,7 @@ public class BukkitExec {
         return this.args.length;
     }
 
-    public Player argPlayerNullable (final int ind) {
+    public Player getArgPlayerNullable (final int ind) {
         if (this.args.length-1 >= ind) {
             final String candidateName = this.args[ind];
             return Bukkit.getPlayer(candidateName);
@@ -170,7 +170,7 @@ public class BukkitExec {
         return false;
     }
 
-    public Player argPlayer (final int ind) throws MissingArgException, BadArgException {
+    public Player getArgPlayer (final int ind) throws MissingArgException, BadArgException {
         if (this.args.length-1 >= ind) {
             final String candidateName = this.args[ind];
             final Player player = Bukkit.getPlayer(candidateName);
@@ -181,10 +181,17 @@ public class BukkitExec {
         throw new MissingArgException(ind+1);
     }
 
-    public OfflinePlayer argOfflinePlayer (final int ind) throws MissingArgException {
+    public OfflinePlayer getArgOfflinePlayer (final int ind) throws MissingArgException {
         if (this.args.length-1 >= ind) {
             final String candidateName = this.args[ind];
             return Bukkit.getOfflinePlayer(candidateName);
+        }
+        throw new MissingArgException(ind+1);
+    }
+
+    public String getArg (final int ind) throws MissingArgException {
+        if (this.args.length-1 >= ind) {
+            return this.args[ind];
         }
         throw new MissingArgException(ind+1);
     }
