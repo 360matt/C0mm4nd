@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BukkitCmd extends Command {
@@ -79,6 +80,7 @@ public abstract class BukkitCmd extends Command {
     @NotNull
     @Override
     public final List<String> tabComplete (@NotNull final CommandSender sender, @NotNull final String alias, @NotNull final String[] args, @Nullable final Location location) throws IllegalArgumentException {
-        return this.tabComplete(sender, args);
+        List<String> list = this.tabComplete(sender, args);
+        return (list != null) ? list : new ArrayList<>();
     }
 }

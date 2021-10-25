@@ -11,6 +11,7 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BungeeCmd extends Command implements Listener, TabExecutor {
@@ -51,7 +52,8 @@ public abstract class BungeeCmd extends Command implements Listener, TabExecutor
 
     // from Bungee
     public final Iterable<String> onTabComplete (CommandSender sender, String[] args) {
-        return this.tabComplete(sender, args);
+        List<String> list = this.tabComplete(sender, args);
+        return (list != null) ? list : new ArrayList<>();
     }
 
 
