@@ -9,7 +9,7 @@ My Discord: ``Matteow#6953``
 <repositories>
     <repository>
         <id>sonatype</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
     </repository>
 </repositories>
 
@@ -18,7 +18,7 @@ My Discord: ``Matteow#6953``
     <dependency>
         <groupId>io.github.360matt</groupId>
         <artifactId>C0mm4nd</artifactId>
-        <version>1.3-SNAPSHOT</version>
+        <version>1.4-SNAPSHOT</version>
     </dependency>
 </dependencies>
 ```
