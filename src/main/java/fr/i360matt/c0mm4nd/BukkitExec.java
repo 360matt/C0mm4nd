@@ -13,6 +13,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 
 public class BukkitExec {
 
@@ -62,11 +63,7 @@ public class BukkitExec {
     }
 
     public void teleport (final Location location) throws SenderNotPlayerException {
-        if (this.sender instanceof Player) {
-            Player player = (Player) this.sender;
-            player.teleport(location);
-        }
-        throw new SenderNotPlayerException();
+        getPlayer().teleport(location);
     }
 
     public void teleport (final Entity entity) throws SenderNotPlayerException {
@@ -74,11 +71,15 @@ public class BukkitExec {
     }
 
     public Location getLocation () throws SenderNotPlayerException {
-        if (this.sender instanceof Player) {
-            Player player = (Player) this.sender;
-            return player.getLocation();
-        }
-        throw new SenderNotPlayerException();
+        return getPlayer().getLocation();
+    }
+
+    public boolean hasPermission (final String permission) throws SenderNotPlayerException {
+        return getPlayer().hasPermission(permission);
+    }
+
+    public boolean hasPermission (final Permission permission) throws SenderNotPlayerException {
+        return getPlayer().hasPermission(permission);
     }
 
 

@@ -59,6 +59,10 @@ public class BungeeExec {
         throw new SenderNotPlayerException();
     }
 
+    public boolean hasPermission (final String permission) throws SenderNotPlayerException {
+        return getPlayer().hasPermission(permission);
+    }
+
 
     public boolean arg (final int ind) {
         return this.args.length-1 >= ind;
