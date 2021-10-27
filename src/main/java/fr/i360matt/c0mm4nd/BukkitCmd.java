@@ -18,6 +18,7 @@ import java.util.List;
 public abstract class BukkitCmd extends Command {
 
     private static CommandMap commandMap;
+    private final String name;
 
     static {
         try {
@@ -32,8 +33,16 @@ public abstract class BukkitCmd extends Command {
 
     public BukkitCmd (final String name) {
         super(name);
+        this.name = name;
+    }
+
+    public void register () {
         if (commandMap != null)
             commandMap.register(name, this);
+    }
+
+    public void unregister () {
+        commandMap.getCommand(name).unregister(commandMap);
     }
 
 
@@ -73,7 +82,8 @@ public abstract class BukkitCmd extends Command {
     @NotNull
     @Override
     public final List<String> tabComplete (@NotNull final CommandSender sender, @NotNull final String alias, @NotNull final String[] args) throws IllegalArgumentException {
-        return this.tabComplete(sender, args);
+        List<String> list = this.tabComplete(sender, args);
+        return (list != null) ? list : new ArrayList<>();
     }
 
     // from Bukkit

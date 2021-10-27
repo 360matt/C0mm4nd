@@ -18,7 +18,7 @@ My Discord: ``Matteow#6953``
     <dependency>
         <groupId>io.github.360matt</groupId>
         <artifactId>C0mm4nd</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <version>1.4.1-SNAPSHOT</version>
     </dependency>
 </dependencies>
 ```
